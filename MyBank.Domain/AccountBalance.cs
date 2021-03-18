@@ -6,9 +6,16 @@ namespace MyBank.Domain
     {
         public float Value { get; private set; }
 
-        public override string ToString()
+        public AccountBalance() { }
+
+        private AccountBalance(float amount)
         {
-            return $"Balance: {this.Value}";
+            this.Value = amount;
+        }
+
+        public static AccountBalance FromExistingData(float amount)
+        {
+            return new AccountBalance(amount);
         }
 
         public void Increase(float amount)
@@ -16,14 +23,19 @@ namespace MyBank.Domain
             this.Value += amount;
         }
 
+        public void Decrease(float amount)
+        {
+            this.Value -= amount;
+        }
+
+        public override string ToString()
+        {
+            return $"Balance: {this.Value}";
+        }
+
         public static explicit operator float(AccountBalance balance)
         {
             return balance.Value;
-        }
-
-        internal void Decrease(float amount)
-        {
-            this.Value -= amount;
         }
     }
 }

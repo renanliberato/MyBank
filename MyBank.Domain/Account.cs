@@ -1,17 +1,27 @@
 ﻿using MyBank.Domain.Exceptions;
-using System;
 
 namespace MyBank.Domain
 {
     public class Account
     {
-        public AccountNumber Number { get; set; }
-        public AccountBalance Balance { get; set; }
+        public AccountNumber Number { get; private set; }
+        public AccountBalance Balance { get; private set; }
 
         public Account()
         {
             this.Number = new AccountNumber();
             this.Balance = new AccountBalance();
+        }
+
+        private Account(AccountNumber number, AccountBalance balance)
+        {
+            this.Number = number;
+            this.Balance = balance;
+        }
+
+        public static Account FromExistingData(AccountNumber number, AccountBalance balance)
+        {
+            return new Account(number, balance);
         }
 
         public float GetBalance()
@@ -33,7 +43,7 @@ namespace MyBank.Domain
                 throw new InvalidWithdrawAmountException("Amount to withdraw must be grater than zero");
 
             if ((float)this.Balance < amount)
-                throw new InsufficientFundsException("You do not have balance to this withdrawal operation");
+                throw new InsufficientFundsException("You do not have balance to this operation");
 
             this.Balance.Decrease(amount);
         }
