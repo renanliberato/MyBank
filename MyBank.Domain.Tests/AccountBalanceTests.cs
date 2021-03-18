@@ -8,7 +8,7 @@ namespace MyBank.Domain.Tests
         public void AccountBalance_IsCreated_Empty()
         {
             var balance = new AccountBalance();
-            
+
             Assert.Equal(0, balance.Value);
         }
     }

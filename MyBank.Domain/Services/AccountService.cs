@@ -2,7 +2,7 @@
 
 namespace MyBank.Domain.Services
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
         private readonly IAccountRepository accountRepository;
 
@@ -18,6 +18,8 @@ namespace MyBank.Domain.Services
 
             from.Withdraw(amount);
             to.Deposit(amount);
+
+            accountRepository.Save();
         }
     }
 }

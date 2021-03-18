@@ -39,6 +39,10 @@ namespace MyBank.Domain.Tests.Services
 
             Assert.Equal(50, (float)from.Balance);
             Assert.Equal(150, (float)to.Balance);
+
+            repository.Verify(obj => obj.FindByNumber(from.Number), Times.Once);
+            repository.Verify(obj => obj.FindByNumber(to.Number), Times.Once);
+            repository.Verify(obj => obj.Save(), Times.Once);
         }
     }
 }
