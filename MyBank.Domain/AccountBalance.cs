@@ -20,5 +20,10 @@ namespace MyBank.Domain
         {
             return balance.Value;
         }
+
+        internal void Decrease(float amount)
+        {
+            this.Value -= amount;
+        }
     }
 }

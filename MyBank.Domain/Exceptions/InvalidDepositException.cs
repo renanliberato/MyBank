@@ -2,9 +2,9 @@
 
 namespace MyBank.Domain.Exceptions
 {
-    public class InvalidDepositException : Exception
+    public class InvalidDepositAmountException : ArgumentException
     {
-        public InvalidDepositException(string message) : base(message)
+        public InvalidDepositAmountException(string message) : base(message)
         {
         }
     }
