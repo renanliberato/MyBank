@@ -10,5 +10,15 @@ namespace MyBank.Domain
         {
             return $"Balance: {this.Value}";
         }
+
+        public void Increase(float amount)
+        {
+            this.Value += amount;
+        }
+
+        public static explicit operator float(AccountBalance balance)
+        {
+            return balance.Value;
+        }
     }
 }
