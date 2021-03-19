@@ -1,18 +1,25 @@
 ﻿using MyBank.Domain.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace MyBank.Domain
 {
+    [DataContract]
     public class Account
     {
+        [DataMember]
         public string Id { get; private set; }
+        [DataMember]
         public AccountNumber Number { get; private set; }
+        [DataMember]
         public AccountBalance Balance { get; private set; }
 
         public Account()
         {
             this.Number = new AccountNumber();
             this.Balance = new AccountBalance();
-
+            
             this.Id = this.Number.Number;
         }
 
@@ -22,6 +29,17 @@ namespace MyBank.Domain
             this.Balance = balance;
 
             this.Id = this.Number.Number;
+        }
+        
+        public static Account Create()
+        {
+            var instance = new Account();
+            instance.Number = new AccountNumber();
+            instance.Balance = new AccountBalance();
+
+            instance.Id = instance.Number.Number;
+
+            return instance;
         }
 
         public static Account FromExistingData(AccountNumber number, AccountBalance balance)
@@ -51,6 +69,11 @@ namespace MyBank.Domain
                 throw new InsufficientFundsException("You do not have balance to this operation");
 
             this.Balance.Decrease(amount);
+        }
+
+        public string GetNumber()
+        {
+            return Number.Number;
         }
     }
 }

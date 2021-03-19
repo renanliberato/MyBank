@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank", "MyBank\MyBank.csproj", "{CEE4F7F3-2167-40F6-8C50-418C65ECD38E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank", "MyBank\MyBank.csproj", "{CEE4F7F3-2167-40F6-8C50-418C65ECD38E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.Domain", "MyBank.Domain\MyBank.Domain.csproj", "{CE60A203-3701-41F3-8886-9C3376507FC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.Domain", "MyBank.Domain\MyBank.Domain.csproj", "{CE60A203-3701-41F3-8886-9C3376507FC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.Domain.Tests", "MyBank.Domain.Tests\MyBank.Domain.Tests.csproj", "{41955782-131E-43B9-9444-5760058C3626}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.Domain.Tests", "MyBank.Domain.Tests\MyBank.Domain.Tests.csproj", "{41955782-131E-43B9-9444-5760058C3626}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.Infrastructure.EntityFrameworkCore", "MyBank.Infrastructure.EntityFrameworkCore\MyBank.Infrastructure.EntityFrameworkCore.csproj", "{546C37E8-7BDC-4863-965F-802D256FE166}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.Infrastructure.EntityFrameworkCore", "MyBank.Infrastructure.EntityFrameworkCore\MyBank.Infrastructure.EntityFrameworkCore.csproj", "{546C37E8-7BDC-4863-965F-802D256FE166}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.CLI", "MyBank.CLI\MyBank.CLI.csproj", "{844D1746-DA89-4BAE-8769-D0681929B8A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.CLI", "MyBank.CLI\MyBank.CLI.csproj", "{844D1746-DA89-4BAE-8769-D0681929B8A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.Tests.Integration", "MyBank.Tests.Integration\MyBank.Tests.Integration.csproj", "{F9F621ED-DD08-491B-A25E-231771697978}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{844D1746-DA89-4BAE-8769-D0681929B8A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{844D1746-DA89-4BAE-8769-D0681929B8A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{844D1746-DA89-4BAE-8769-D0681929B8A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9F621ED-DD08-491B-A25E-231771697978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9F621ED-DD08-491B-A25E-231771697978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9F621ED-DD08-491B-A25E-231771697978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9F621ED-DD08-491B-A25E-231771697978}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

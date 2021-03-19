@@ -22,6 +22,13 @@ namespace MyBank.Domain.Services
             return account;
         }
 
+        public void Deposit(AccountNumber accountNumber, float amount)
+        {
+            var account = accountRepository.FindByNumber(accountNumber);
+            
+            account.Deposit(amount);
+        }
+
         public void Transfer(AccountNumber fromNumber, AccountNumber toNumber, float amount)
         {
             var from = accountRepository.FindByNumber(fromNumber);
@@ -31,6 +38,13 @@ namespace MyBank.Domain.Services
             to.Deposit(amount);
 
             accountRepository.Save();
+        }
+
+        public void Withdraw(AccountNumber accountNumber, float amount)
+        {
+            var account = accountRepository.FindByNumber(accountNumber);
+
+            account.Withdraw(amount);
         }
     }
 }

@@ -5,6 +5,9 @@ namespace MyBank.Infrastructure.EntityFrameworkCore
 {
     public class AccountContext : DbContext
     {
+        //public static string Path { get; set; } = @"Data Source=C:\Users\renan\source\repos\MyBank\accounts.db";
+        public static string Path { get; set; } = @"Data Source=C:\Users\renan\source\repos\MyBank\accounts_test.db";
+
         public DbSet<Account> Accounts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +29,6 @@ namespace MyBank.Infrastructure.EntityFrameworkCore
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(@"Data Source=C:\Users\renan\source\repos\MyBank\accounts.db");
+            => options.UseSqlite(Path);
     }
 }

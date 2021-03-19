@@ -1,7 +1,11 @@
-﻿namespace MyBank.Domain
+﻿using System.Runtime.Serialization;
+
+namespace MyBank.Domain
 {
+    [DataContract]
     public class AccountBalance
     {
+        [DataMember]
         public float Amount { get; private set; }
 
         public AccountBalance() { }
