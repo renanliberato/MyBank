@@ -9,7 +9,7 @@ namespace MyBank.Domain.Tests
         {
             var balance = new AccountBalance();
 
-            Assert.Equal(0, balance.Value);
+            Assert.Equal(0, balance.Amount);
         }
     }
 }

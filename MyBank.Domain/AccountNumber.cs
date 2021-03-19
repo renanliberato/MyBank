@@ -4,16 +4,16 @@ namespace MyBank.Domain
 {
     public class AccountNumber
     {
-        public string Value { get; }
+        public string Number { get; }
 
         public AccountNumber()
         {
-            this.Value = Guid.NewGuid().ToString();
+            this.Number = Guid.NewGuid().ToString();
         }
 
         public override string ToString()
         {
-            return Value;
+            return Number;
         }
     }
 }

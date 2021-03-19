@@ -13,7 +13,7 @@ namespace MyBank.Domain.Tests
 
             var list = Enumerable
                 .Range(0, qtdOfNumbers)
-                .Select(i => (new AccountNumber()).Value)
+                .Select(i => (new AccountNumber()).Number)
                 .ToArray();
 
             var quantityOfDifferentNumbers = list
@@ -28,7 +28,7 @@ namespace MyBank.Domain.Tests
         {
             var accountNumber = new AccountNumber();
 
-            Assert.Equal(36, accountNumber.Value.Length);
+            Assert.Equal(36, accountNumber.Number.Length);
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace MyBank.Domain.Tests
         {
             var accountNumber = new AccountNumber();
 
-            Assert.Equal(accountNumber.Value, accountNumber.ToString());
+            Assert.Equal(accountNumber.Number, accountNumber.ToString());
         }
     }
 }

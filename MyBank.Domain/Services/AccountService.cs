@@ -11,6 +11,17 @@ namespace MyBank.Domain.Services
             this.accountRepository = accountRepository;
         }
 
+        public Account CreateAccount()
+        {
+            var account = new Account();
+            
+            accountRepository.Add(account);
+
+            accountRepository.Save();
+
+            return account;
+        }
+
         public void Transfer(AccountNumber fromNumber, AccountNumber toNumber, float amount)
         {
             var from = accountRepository.FindByNumber(fromNumber);

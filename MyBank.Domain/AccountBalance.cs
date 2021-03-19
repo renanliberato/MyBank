@@ -2,13 +2,13 @@
 {
     public class AccountBalance
     {
-        public float Value { get; private set; }
+        public float Amount { get; private set; }
 
         public AccountBalance() { }
 
         private AccountBalance(float amount)
         {
-            this.Value = amount;
+            this.Amount = amount;
         }
 
         public static AccountBalance FromExistingData(float amount)
@@ -18,22 +18,22 @@
 
         public void Increase(float amount)
         {
-            this.Value += amount;
+            this.Amount += amount;
         }
 
         public void Decrease(float amount)
         {
-            this.Value -= amount;
+            this.Amount -= amount;
         }
 
         public override string ToString()
         {
-            return $"Balance: {this.Value}";
+            return $"Balance: {this.Amount}";
         }
 
         public static explicit operator float(AccountBalance balance)
         {
-            return balance.Value;
+            return balance.Amount;
         }
     }
 }

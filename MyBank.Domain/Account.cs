@@ -4,6 +4,7 @@ namespace MyBank.Domain
 {
     public class Account
     {
+        public string Id { get; private set; }
         public AccountNumber Number { get; private set; }
         public AccountBalance Balance { get; private set; }
 
@@ -11,12 +12,16 @@ namespace MyBank.Domain
         {
             this.Number = new AccountNumber();
             this.Balance = new AccountBalance();
+
+            this.Id = this.Number.Number;
         }
 
         private Account(AccountNumber number, AccountBalance balance)
         {
             this.Number = number;
             this.Balance = balance;
+
+            this.Id = this.Number.Number;
         }
 
         public static Account FromExistingData(AccountNumber number, AccountBalance balance)
