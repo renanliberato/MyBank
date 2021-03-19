@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyBank.Domain;
+using System.IO;
 
 namespace MyBank.Infrastructure.EntityFrameworkCore
 {
     public class AccountContext : DbContext
     {
-        //public static string Path { get; set; } = @"Data Source=C:\Users\renan\source\repos\MyBank\accounts.db";
-        public static string Path { get; set; } = @"Data Source=C:\Users\renan\source\repos\MyBank\accounts_test.db";
+        public static string DbName { get; set; } = "accounts.db";
 
         public DbSet<Account> Accounts { get; set; }
 
@@ -29,6 +29,6 @@ namespace MyBank.Infrastructure.EntityFrameworkCore
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(Path);
+            => options.UseSqlite($@"Data Source = {Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}{DbName}");
     }
 }

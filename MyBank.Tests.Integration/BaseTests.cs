@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using MyBank.Infrastructure.EntityFrameworkCore;
 using System;
+using System.IO;
 using Xunit;
 
 namespace MyBank.Tests.Integration
@@ -13,7 +14,7 @@ namespace MyBank.Tests.Integration
         public BaseTests(WebApplicationFactory<MyBank.Startup> factory)
         {
             _factory = factory;
-            AccountContext.Path = @"Data Source=C:\Users\renan\source\repos\MyBank\accounts_test.db";
+            AccountContext.DbName = "accounts_test.db";
 
             context = new AccountContext();
             context.Database.EnsureDeleted();
