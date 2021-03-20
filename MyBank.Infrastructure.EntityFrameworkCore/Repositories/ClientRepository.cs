@@ -1,21 +1,27 @@
 ﻿using MyBank.Domain;
 using MyBank.Domain.Repositories;
+using System;
 using System.Linq;
 
 namespace MyBank.Infrastructure.EntityFrameworkCore.Repositories
 {
-    public class AccountRepository : IAccountRepository
+    public class ClientRepository : IClientRepository
     {
         private readonly AccountContext context;
 
-        public AccountRepository(AccountContext context)
+        public ClientRepository(AccountContext context)
         {
             this.context = context;
         }
 
-        public Account FindByNumber(AccountNumber number)
+        public void Add(Client client)
         {
-            return this.context.Clients.First(a => a.Account != null && a.Account.Number.Number == number.Number).Account;
+            this.context.Clients.Add(client);
+        }
+
+        public Client FindById(Guid id)
+        {
+            return this.context.Clients.First(a => a.Id == id);
         }
 
         public void Save()

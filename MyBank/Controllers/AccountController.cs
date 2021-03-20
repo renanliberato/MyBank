@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyBank.Domain;
 using MyBank.Domain.Commands;
 using MyBank.Domain.Services;
@@ -14,17 +9,11 @@ namespace MyBank.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private IAccountService accountService;
+        private readonly IAccountService accountService;
 
         public AccountController(IAccountService accountService)
         {
             this.accountService = accountService;
-        }
-
-        [HttpPost]
-        public Account CreateAccount()
-        {
-            return accountService.CreateAccount();
         }
 
         [HttpPost]

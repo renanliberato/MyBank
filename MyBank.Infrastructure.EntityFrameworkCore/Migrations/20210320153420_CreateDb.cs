@@ -3,17 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyBank.Infrastructure.EntityFrameworkCore.Migrations
 {
-    public partial class AddedClientsAndAccountOpeningRequest : Migration
+    public partial class CreateDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<Guid>(
-                name: "ClientId",
-                table: "Accounts",
-                type: "TEXT",
-                nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
-
             migrationBuilder.CreateTable(
                 name: "Clients",
                 columns: table => new
@@ -47,11 +40,25 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Accounts_ClientId",
-                table: "Accounts",
-                column: "ClientId",
-                unique: true);
+            migrationBuilder.CreateTable(
+                name: "Accounts",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Number = table.Column<string>(type: "TEXT", nullable: true),
+                    Amount = table.Column<float>(type: "REAL", nullable: true),
+                    ClientId = table.Column<Guid>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accounts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Accounts_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AccountOpeningRequests_ClientId",
@@ -59,34 +66,23 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Migrations
                 column: "ClientId",
                 unique: true);
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Accounts_Clients_ClientId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Accounts_ClientId",
                 table: "Accounts",
                 column: "ClientId",
-                principalTable: "Clients",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Accounts_Clients_ClientId",
-                table: "Accounts");
-
             migrationBuilder.DropTable(
                 name: "AccountOpeningRequests");
 
             migrationBuilder.DropTable(
+                name: "Accounts");
+
+            migrationBuilder.DropTable(
                 name: "Clients");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Accounts_ClientId",
-                table: "Accounts");
-
-            migrationBuilder.DropColumn(
-                name: "ClientId",
-                table: "Accounts");
         }
     }
 }

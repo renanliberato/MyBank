@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.EntityFrameworkCore;
+using MyBank.Domain;
+using MyBank.Domain.Repositories;
+using MyBank.Domain.Services;
 using MyBank.Infrastructure.EntityFrameworkCore;
 using System;
 using System.IO;
@@ -18,12 +22,33 @@ namespace MyBank.Tests.Integration
 
             context = new AccountContext();
             context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
+            context.Database.Migrate();
         }
+
 
         public void Dispose()
         {
             context.Dispose();
+        }
+
+        protected Client CreateBankClient(string name)
+        {
+            var client = new Client(name);
+            context.Clients.Add(client);
+            context.SaveChanges();
+
+            return client;
+        }
+        
+        protected Account CreateBankAccount(float balance = 0)
+        {
+            var client = CreateBankClient("Renan");
+
+            client.CreateAccount();
+            client.Account.Deposit(balance);
+            context.SaveChanges();
+
+            return client.Account;
         }
     }
 }

@@ -30,6 +30,7 @@ namespace MyBank
             services.AddDbContext<AccountContext>()
                 .AddTransient<IAccountRepository, AccountRepository>()
                 .AddTransient<IAccountOpeningRequestRepository, AccountOpeningRequestRepository>()
+                .AddTransient<IClientRepository, ClientRepository>()
                 .AddTransient<IAdministrativeAccountOpeningService, AdministrativeAccountOpeningService>()
                 .AddTransient<IAccountService, AccountService>()
                 .AddTransient<IAccountOpeningService, AccountOpeningService>();
@@ -89,7 +90,7 @@ namespace MyBank
             {
                 using (var context = serviceScope.ServiceProvider.GetService<AccountContext>())
                 {
-                    context.Database.EnsureCreated();
+                    //context.Database.EnsureCreated();
                     context.Database.Migrate();
                 }
             }

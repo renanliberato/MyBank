@@ -9,8 +9,8 @@ using MyBank.Infrastructure.EntityFrameworkCore;
 namespace MyBank.Infrastructure.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(AccountContext))]
-    [Migration("20210320023658_AddedClientsAndAccountOpeningRequest")]
-    partial class AddedClientsAndAccountOpeningRequest
+    [Migration("20210320153420_CreateDb")]
+    partial class CreateDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
