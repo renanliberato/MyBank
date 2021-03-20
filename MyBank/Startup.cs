@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +29,10 @@ namespace MyBank
             services.AddControllersWithViews();
             services.AddDbContext<AccountContext>()
                 .AddTransient<IAccountRepository, AccountRepository>()
-                .AddTransient<IAccountService, AccountService>();
+                .AddTransient<IAccountOpeningRequestRepository, AccountOpeningRequestRepository>()
+                .AddTransient<IAdministrativeAccountOpeningService, AdministrativeAccountOpeningService>()
+                .AddTransient<IAccountService, AccountService>()
+                .AddTransient<IAccountOpeningService, AccountOpeningService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -73,6 +77,22 @@ namespace MyBank
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            UpdateDatabase(app);
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<AccountContext>())
+                {
+                    context.Database.EnsureCreated();
+                    context.Database.Migrate();
+                }
+            }
         }
     }
 }

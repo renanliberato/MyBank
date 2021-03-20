@@ -11,9 +11,9 @@ namespace MyBank.Domain.Services
             this.accountRepository = accountRepository;
         }
 
-        public Account CreateAccount()
+        public Account CreateAccount(Client client)
         {
-            var account = new Account();
+            var account = Account.Create(client);
             
             accountRepository.Add(account);
 
@@ -27,6 +27,8 @@ namespace MyBank.Domain.Services
             var account = accountRepository.FindByNumber(accountNumber);
             
             account.Deposit(amount);
+
+            accountRepository.Save();
         }
 
         public void Transfer(AccountNumber fromNumber, AccountNumber toNumber, float amount)
@@ -45,6 +47,8 @@ namespace MyBank.Domain.Services
             var account = accountRepository.FindByNumber(accountNumber);
 
             account.Withdraw(amount);
+
+            accountRepository.Save();
         }
     }
 }
