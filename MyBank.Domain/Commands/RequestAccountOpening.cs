@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace MyBank.Domain.Commands
 {
@@ -6,6 +7,6 @@ namespace MyBank.Domain.Commands
     public class RequestAccountOpening
     {
         [DataMember]
-        public string Name { get; set; }
+        public Guid ClientId { get; set; }
     }
 }

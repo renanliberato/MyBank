@@ -10,15 +10,16 @@ namespace MyBank.Domain.Tests.Services
         [Fact]
         public void Request_CreatesNewRequestAndPersistToTheDatabase_IfAValidNameIsPassed()
         {
-            var repository = new Mock<IAccountOpeningRequestRepository>();
-            var name = "Renan";
-            var service = new AccountOpeningService(repository.Object);
+            var clientRepository = new Mock<IClientRepository>();
+            var client = new Client("Renan");
+            clientRepository.Setup(obj => obj.FindById(client.Id)).Returns(client);
+            var service = new AccountOpeningService(clientRepository.Object);
 
-            var request = service.RequestAccountOpening(name);
+            var request = service.RequestAccountOpening(client.Id);
 
-            Assert.Equal(name, request.Name);
-            repository.Verify(obj => obj.Add(It.Is<AccountOpeningRequest>(r => r.Name == name)), Times.Once);
-            repository.Verify(obj => obj.Save(), Times.Once);
+            Assert.Equal(client.AccountOpeningRequest.Id, request.Id);
+            clientRepository.Verify(obj => obj.FindById(client.Id), Times.Once);
+            clientRepository.Verify(obj => obj.Save(), Times.Once);
         }
     }
 }

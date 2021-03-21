@@ -1,7 +1,9 @@
-﻿namespace MyBank.Domain.Services
+﻿using System;
+
+namespace MyBank.Domain.Services
 {
     public interface IAccountOpeningService
     {
-        AccountOpeningRequest RequestAccountOpening(string name);
+        AccountOpeningRequest RequestAccountOpening(Guid clientId);
     }
 }

@@ -10,6 +10,7 @@ using Xunit;
 
 namespace MyBank.Tests.Integration
 {
+    [Collection(nameof(SystemTestCollectionDefinition))]
     public class BaseTests : IClassFixture<WebApplicationFactory<MyBank.Startup>>, IDisposable
     {
         protected readonly WebApplicationFactory<MyBank.Startup> _factory;
@@ -21,6 +22,7 @@ namespace MyBank.Tests.Integration
             AccountContext.DbName = "accounts_test.db";
 
             context = new AccountContext();
+
             context.Database.EnsureDeleted();
             context.Database.Migrate();
         }
@@ -39,16 +41,21 @@ namespace MyBank.Tests.Integration
 
             return client;
         }
-        
+
         protected Account CreateBankAccount(float balance = 0)
         {
             var client = CreateBankClient("Renan");
 
             client.CreateAccount();
-            client.Account.Deposit(balance);
+            if (balance > 0)
+                client.Account.Deposit(balance);
+
             context.SaveChanges();
 
             return client.Account;
         }
     }
+
+    [CollectionDefinition(nameof(SystemTestCollectionDefinition), DisableParallelization = true)]
+    public class SystemTestCollectionDefinition { }
 }

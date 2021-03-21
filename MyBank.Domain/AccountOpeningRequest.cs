@@ -9,16 +9,13 @@ namespace MyBank.Domain
         [DataMember]
         public Guid Id { get; private set; }
         [DataMember]
-        public string Name { get; private set; }
-        [DataMember]
         public AccountOpeningRequestStatus Status { get; private set; }
         [DataMember]
         public DateTime RequestedAt { get; private set; }
 
-        public AccountOpeningRequest(string name)
+        public AccountOpeningRequest()
         {
-            this.Id = Guid.NewGuid();
-            this.Name = name;
+            //this.Id = Guid.NewGuid();
             this.Status = AccountOpeningRequestStatus.Initial;
             this.RequestedAt = DateTime.UtcNow;
         }

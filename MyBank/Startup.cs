@@ -33,7 +33,8 @@ namespace MyBank
                 .AddTransient<IClientRepository, ClientRepository>()
                 .AddTransient<IAdministrativeAccountOpeningService, AdministrativeAccountOpeningService>()
                 .AddTransient<IAccountService, AccountService>()
-                .AddTransient<IAccountOpeningService, AccountOpeningService>();
+                .AddTransient<IAccountOpeningService, AccountOpeningService>()
+                .AddTransient<IClientService, ClientService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

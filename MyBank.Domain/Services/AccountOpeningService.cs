@@ -1,24 +1,25 @@
 ﻿using MyBank.Domain.Repositories;
+using System;
 
 namespace MyBank.Domain.Services
 {
     public class AccountOpeningService : IAccountOpeningService
     {
-        private readonly IAccountOpeningRequestRepository accountOpeningRequestRepository;
+        private readonly IClientRepository clientRepository;
 
-        public AccountOpeningService(IAccountOpeningRequestRepository accountOpeningRequestRepository)
+        public AccountOpeningService(IClientRepository clientRepository)
         {
-            this.accountOpeningRequestRepository = accountOpeningRequestRepository;
+            this.clientRepository = clientRepository;
         }
 
-        public AccountOpeningRequest RequestAccountOpening(string name)
+        public AccountOpeningRequest RequestAccountOpening(Guid clientId)
         {
-            var request = new AccountOpeningRequest(name);
-            
-            accountOpeningRequestRepository.Add(request);
-            accountOpeningRequestRepository.Save();
+            var client = clientRepository.FindById(clientId);
+            client.RequestAccountCreation();
 
-            return request;
+            clientRepository.Save();
+
+            return client.AccountOpeningRequest;
         }
     }
 }

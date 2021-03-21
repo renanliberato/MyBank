@@ -6,10 +6,12 @@ namespace MyBank.Domain.Services
     public class AdministrativeAccountOpeningService : IAdministrativeAccountOpeningService
     {
         private readonly IAccountOpeningRequestRepository accountOpeningRequestRepository;
+        private readonly IAccountRepository accountRepository;
 
-        public AdministrativeAccountOpeningService(IAccountOpeningRequestRepository accountOpeningRequestRepository)
+        public AdministrativeAccountOpeningService(IAccountOpeningRequestRepository accountOpeningRequestRepository, IAccountRepository accountRepository)
         {
             this.accountOpeningRequestRepository = accountOpeningRequestRepository;
+            this.accountRepository = accountRepository;
         }
 
         public AccountOpeningRequest ApproveAccountOpening(Guid requestId)
@@ -18,8 +20,6 @@ namespace MyBank.Domain.Services
             
             request.Approve();
             
-            accountOpeningRequestRepository.Save();
-
             return request;
         }
 

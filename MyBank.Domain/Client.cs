@@ -25,5 +25,10 @@ namespace MyBank.Domain
         {
             this.Account = new Account();
         }
+
+        public void RequestAccountCreation()
+        {
+            this.AccountOpeningRequest = new AccountOpeningRequest();
+        }
     }
 }
