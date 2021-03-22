@@ -4,5 +4,6 @@
     {
         Account FindByNumber(AccountNumber number);
         void Save();
+        void Add(Account account);
     }
 }

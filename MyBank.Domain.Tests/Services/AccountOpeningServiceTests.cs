@@ -1,6 +1,7 @@
 ﻿using Moq;
 using MyBank.Domain.Repositories;
 using MyBank.Domain.Services;
+using System;
 using Xunit;
 
 namespace MyBank.Domain.Tests.Services
@@ -10,16 +11,14 @@ namespace MyBank.Domain.Tests.Services
         [Fact]
         public void Request_CreatesNewRequestAndPersistToTheDatabase_IfAValidNameIsPassed()
         {
-            var clientRepository = new Mock<IClientRepository>();
-            var client = new Client("Renan");
-            clientRepository.Setup(obj => obj.FindById(client.Id)).Returns(client);
-            var service = new AccountOpeningService(clientRepository.Object);
+            var requestRepository = new Mock<IAccountOpeningRequestRepository>();
+            var service = new AccountOpeningService(requestRepository.Object);
+            var clientId = Guid.NewGuid();
+            var request = service.RequestAccountOpening(clientId);
 
-            var request = service.RequestAccountOpening(client.Id);
-
-            Assert.Equal(client.AccountOpeningRequest.Id, request.Id);
-            clientRepository.Verify(obj => obj.FindById(client.Id), Times.Once);
-            clientRepository.Verify(obj => obj.Save(), Times.Once);
+            Assert.Equal(clientId, request.ClientId);
+            requestRepository.Verify(obj => obj.Add(It.Is<AccountOpeningRequest>(r => r.ClientId == clientId)), Times.Once);
+            requestRepository.Verify(obj => obj.Save(), Times.Once);
         }
     }
 }

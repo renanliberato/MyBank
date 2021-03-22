@@ -13,9 +13,14 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Repositories
             this.context = context;
         }
 
+        public void Add(Account account)
+        {
+            this.context.Accounts.Add(account);
+        }
+
         public Account FindByNumber(AccountNumber number)
         {
-            return this.context.Clients.First(a => a.Account != null && a.Account.Number.Number == number.Number).Account;
+            return this.context.Accounts.First(a => a.Number.Number == number.Number);
         }
 
         public void Save()

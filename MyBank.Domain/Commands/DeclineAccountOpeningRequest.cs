@@ -8,5 +8,7 @@ namespace MyBank.Domain.Commands
     {
         [DataMember]
         public Guid Id { get; set; }
+        [DataMember]
+        public Guid ClientId { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using MyBank.Domain.Exceptions;
 using MyBank.Domain.Repositories;
 using MyBank.Domain.Services;
+using System;
 using Xunit;
 
 namespace MyBank.Domain.Tests.Services
@@ -11,7 +12,7 @@ namespace MyBank.Domain.Tests.Services
         [Fact]
         public void Deposit_WithInvalidAmount_ThrowsException()
         {
-            var account = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), new Client("Renan"));
+            var account = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), Guid.NewGuid());
 
             var repository = new Mock<IAccountRepository>();
             repository.Setup(obj => obj.FindByNumber(account.Number)).Returns(account);
@@ -25,7 +26,7 @@ namespace MyBank.Domain.Tests.Services
         [Fact]
         public void Deposit_WithValidAmount_IncrementsAccountBalanceAndSavesItToTheRepository()
         {
-            var account = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), new Client("Renan"));
+            var account = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), Guid.NewGuid());
 
             var repository = new Mock<IAccountRepository>();
             repository.Setup(obj => obj.FindByNumber(account.Number)).Returns(account);
@@ -43,8 +44,8 @@ namespace MyBank.Domain.Tests.Services
         [Fact]
         public void Transfer_WithAmountBiggerThanFromAccountBalance_ThrowsException()
         {
-            var from = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), new Client("Renan"));
-            var to = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), new Client("Renan"));
+            var from = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), Guid.NewGuid());
+            var to = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), Guid.NewGuid());
 
             var repository = new Mock<IAccountRepository>();
             repository.Setup(obj => obj.FindByNumber(from.Number)).Returns(from);
@@ -60,8 +61,8 @@ namespace MyBank.Domain.Tests.Services
         [Fact]
         public void Transfer_WithValidAmount_WithDrawFromOneAccountAndDepositOnAnother()
         {
-            var from = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), new Client("Renan"));
-            var to = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), new Client("Renan"));
+            var from = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), Guid.NewGuid());
+            var to = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), Guid.NewGuid());
 
             var repository = new Mock<IAccountRepository>();
             repository.Setup(obj => obj.FindByNumber(from.Number)).Returns(from);
@@ -82,7 +83,7 @@ namespace MyBank.Domain.Tests.Services
         [Fact]
         public void Withdraw_WithInvalidAmount_ThrowsException()
         {
-            var account = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), new Client("Renan"));
+            var account = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), Guid.NewGuid());
 
             var repository = new Mock<IAccountRepository>();
             repository.Setup(obj => obj.FindByNumber(account.Number)).Returns(account);
@@ -96,7 +97,7 @@ namespace MyBank.Domain.Tests.Services
         [Fact]
         public void Withdraw_WithAmountBiggerThanBalance_ThrowsException()
         {
-            var account = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), new Client("Renan"));
+            var account = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), Guid.NewGuid());
 
             var repository = new Mock<IAccountRepository>();
             repository.Setup(obj => obj.FindByNumber(account.Number)).Returns(account);
@@ -110,7 +111,7 @@ namespace MyBank.Domain.Tests.Services
         [Fact]
         public void Withdraw_WithValidAmount_DecrementsAccountBalanceAndSavesItToTheRepository()
         {
-            var account = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), new Client("Renan"));
+            var account = Account.FromExistingData(new AccountNumber(), AccountBalance.FromExistingData(100), Guid.NewGuid());
 
             var repository = new Mock<IAccountRepository>();
             repository.Setup(obj => obj.FindByNumber(account.Number)).Returns(account);

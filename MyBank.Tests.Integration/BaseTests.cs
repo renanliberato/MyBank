@@ -42,17 +42,27 @@ namespace MyBank.Tests.Integration
             return client;
         }
 
+        protected AccountOpeningRequest CreateAccountOpeningRequest(Client client)
+        {
+            var request = new AccountOpeningRequest(client.Id);
+            context.AccountOpeningRequests.Add(request);
+            context.SaveChanges();
+
+            return request;
+        }
+
         protected Account CreateBankAccount(float balance = 0)
         {
             var client = CreateBankClient("Renan");
+            var account = Account.Create(client.Id);
+            context.Accounts.Add(account);
 
-            client.CreateAccount();
             if (balance > 0)
-                client.Account.Deposit(balance);
+                account.Deposit(balance);
 
             context.SaveChanges();
 
-            return client.Account;
+            return account;
         }
     }
 

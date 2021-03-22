@@ -37,7 +37,7 @@ namespace MyBank.Tests.Integration
             response.EnsureSuccessStatusCode();
             var requestFromResponse = JsonConvert.DeserializeObject<AccountOpeningRequest>(await response.Content.ReadAsStringAsync());
 
-            var request = context.Clients.Where(c => c.AccountOpeningRequest != null && c.AccountOpeningRequest.Id == requestFromResponse.Id).Select(c => c.AccountOpeningRequest).AsNoTracking().FirstOrDefault();
+            var request = context.AccountOpeningRequests.Where(c => c.Id == requestFromResponse.Id).AsNoTracking().FirstOrDefault();
 
             Assert.NotNull(request);
         }

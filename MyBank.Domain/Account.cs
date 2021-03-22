@@ -11,11 +11,11 @@ namespace MyBank.Domain
         [DataMember]
         public string Id { get; private set; }
         [DataMember]
+        public Guid ClientId { get; private set; }
+        [DataMember]
         public AccountNumber Number { get; private set; }
         [DataMember]
         public AccountBalance Balance { get; private set; }
-        [DataMember]
-        public Client Client { get; private set; }
 
         public Account()
         {
@@ -25,27 +25,27 @@ namespace MyBank.Domain
             this.Id = this.Number.Number;
         }
 
-        private Account(AccountNumber number, AccountBalance balance, Client client)
+        private Account(AccountNumber number, AccountBalance balance, Guid clientId)
         {
             this.Number = number;
             this.Balance = balance;
-            this.Client = client;
+            this.ClientId = clientId;
 
             this.Id = this.Number.Number;
         }
         
-        public static Account Create(Client client)
+        public static Account Create(Guid clientId)
         {
-            var instance = new Account(new AccountNumber(), new AccountBalance(), client);
+            var instance = new Account(new AccountNumber(), new AccountBalance(), clientId);
 
             instance.Id = instance.Number.Number;
 
             return instance;
         }
 
-        public static Account FromExistingData(AccountNumber number, AccountBalance balance, Client client)
+        public static Account FromExistingData(AccountNumber number, AccountBalance balance, Guid clientId)
         {
-            return new Account(number, balance, client);
+            return new Account(number, balance, clientId);
         }
 
         public float GetBalance()

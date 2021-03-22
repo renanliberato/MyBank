@@ -20,7 +20,7 @@ namespace MyBank.Controllers
         [Route("approve")]
         public AccountOpeningRequest ApproveRequest([FromBody] ApproveAccountOpeningRequest command)
         {
-            return accountOpeningService.ApproveAccountOpening(command.Id);
+            return accountOpeningService.ApproveAccountOpening(command.ClientId, command.Id);
         }
 
         [HttpPost]

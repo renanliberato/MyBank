@@ -34,7 +34,7 @@ namespace MyBank.Tests.Integration
             // Assert
             response.EnsureSuccessStatusCode();
 
-            var updatedBalance = context.Clients.Where(a => a.Account.Id == bankAccount.Id).Select(c => c.Account.Balance.Amount).First();
+            var updatedBalance = context.Accounts.Where(a => a.Id == bankAccount.Id).Select(c => c.Balance.Amount).First();
 
             Assert.Equal(100, updatedBalance);
         }
@@ -59,7 +59,7 @@ namespace MyBank.Tests.Integration
             // Assert
             response.EnsureSuccessStatusCode();
 
-            var updatedBalance = context.Clients.Where(a => a.Account.Id == bankAccount.Id).Select(c => c.Account.Balance.Amount).First();
+            var updatedBalance = context.Accounts.Where(a => a.Id == bankAccount.Id).Select(c => c.Balance.Amount).First();
 
             Assert.Equal(50, updatedBalance);
         }
@@ -86,8 +86,8 @@ namespace MyBank.Tests.Integration
             // Assert
             response.EnsureSuccessStatusCode();
 
-            var fromBalance = context.Clients.Where(a => a.Account.Id == from.Id).Select(c => c.Account.Balance.Amount).First();
-            var toBalance = context.Clients.Where(a => a.Account.Id == to.Id).Select(c => c.Account.Balance.Amount).First();
+            var fromBalance = context.Accounts.Where(a => a.Id == from.Id).Select(c => c.Balance.Amount).First();
+            var toBalance = context.Accounts.Where(a => a.Id == to.Id).Select(c => c.Balance.Amount).First();
 
             Assert.Equal(50, fromBalance);
             Assert.Equal(150, toBalance);

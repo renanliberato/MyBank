@@ -5,21 +5,20 @@ namespace MyBank.Domain.Services
 {
     public class AccountOpeningService : IAccountOpeningService
     {
-        private readonly IClientRepository clientRepository;
+        private readonly IAccountOpeningRequestRepository accountOpeningRequestRepository;
 
-        public AccountOpeningService(IClientRepository clientRepository)
+        public AccountOpeningService(IAccountOpeningRequestRepository accountOpeningRequestRepository)
         {
-            this.clientRepository = clientRepository;
+            this.accountOpeningRequestRepository = accountOpeningRequestRepository;
         }
 
         public AccountOpeningRequest RequestAccountOpening(Guid clientId)
         {
-            var client = clientRepository.FindById(clientId);
-            client.RequestAccountCreation();
+            var request = new AccountOpeningRequest(clientId);
+            accountOpeningRequestRepository.Add(request);
+            accountOpeningRequestRepository.Save();
 
-            clientRepository.Save();
-
-            return client.AccountOpeningRequest;
+            return request;
         }
     }
 }

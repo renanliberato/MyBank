@@ -22,7 +22,7 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Repositories
 
         public Client FindById(Guid id)
         {
-            return this.context.Clients.Include(c => c.AccountOpeningRequest).First(a => a.Id == id);
+            return this.context.Clients.First(a => a.Id == id);
         }
 
         public void Save()

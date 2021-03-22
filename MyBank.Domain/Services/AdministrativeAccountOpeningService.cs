@@ -14,12 +14,21 @@ namespace MyBank.Domain.Services
             this.accountRepository = accountRepository;
         }
 
-        public AccountOpeningRequest ApproveAccountOpening(Guid requestId)
+        public AccountOpeningRequest ApproveAccountOpening(Guid clientId, Guid requestId)
         {
             var request = accountOpeningRequestRepository.FindById(requestId);
-            
+
+            if (request.ClientId != clientId)
+                throw new Exception("Request is not from this client");
+
             request.Approve();
+
+            var account = Account.Create(clientId);
+            accountRepository.Add(account);
             
+            accountRepository.Save();
+            accountOpeningRequestRepository.Save();
+
             return request;
         }
 
