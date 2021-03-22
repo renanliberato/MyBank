@@ -29,8 +29,8 @@ namespace MyBank.Tests.Integration
             // Act
             var command = new ApproveAccountOpeningRequest
             {
-                ClientId = bankClient.Id,
-                Id = request.Id
+                ClientId = bankClient.Id.Id,
+                Id = request.Id.Id
             };
             var content = JsonContent.Create(command);
             var response = await client.PostAsync("/api/administrativeaccountopeningrequest/approve", content);
@@ -59,8 +59,8 @@ namespace MyBank.Tests.Integration
             // Act
             var command = new DeclineAccountOpeningRequest
             {
-                ClientId = bankClient.Id,
-                Id = request.Id
+                ClientId = bankClient.Id.Id,
+                Id = request.Id.Id
             };
             var content = JsonContent.Create(command);
             var response = await client.PostAsync("/api/administrativeaccountopeningrequest/decline", content);

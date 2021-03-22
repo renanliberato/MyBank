@@ -10,7 +10,7 @@ namespace MyBank.Domain
 
         public AccountBalance() { }
 
-        private AccountBalance(float amount)
+        public AccountBalance(float amount)
         {
             this.Amount = amount;
         }

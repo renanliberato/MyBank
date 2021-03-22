@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyBank.Domain.ValueObjects;
+using System;
 using System.Runtime.Serialization;
 
 namespace MyBank.Domain
@@ -7,17 +8,19 @@ namespace MyBank.Domain
     public class AccountOpeningRequest
     {
         [DataMember]
-        public Guid Id { get; private set; }
+        public RequestId Id { get; private set; }
         [DataMember]
-        public Guid ClientId { get; private set; }
+        public ClientId ClientId { get; private set; }
         [DataMember]
         public AccountOpeningRequestStatus Status { get; private set; }
         [DataMember]
         public DateTime RequestedAt { get; private set; }
 
-        public AccountOpeningRequest(Guid clientId)
+        public AccountOpeningRequest() { }
+
+        public AccountOpeningRequest(ClientId clientId)
         {
-            this.Id = Guid.NewGuid();
+            this.Id = new RequestId(Guid.NewGuid());
             this.ClientId = clientId;
             this.Status = AccountOpeningRequestStatus.Initial;
             this.RequestedAt = DateTime.UtcNow;

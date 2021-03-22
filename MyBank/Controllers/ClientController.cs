@@ -2,6 +2,7 @@
 using MyBank.Domain;
 using MyBank.Domain.Commands;
 using MyBank.Domain.Services;
+using System.Threading.Tasks;
 
 namespace MyBank.Controllers
 {
@@ -17,7 +18,7 @@ namespace MyBank.Controllers
         }
 
         [HttpPost]
-        public Client Register([FromBody] BecomeClient command)
+        public Task<Client> Register([FromBody] BecomeClient command)
         {
             return clientService.Register(command);
         }

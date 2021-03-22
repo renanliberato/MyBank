@@ -1,5 +1,8 @@
-﻿using MyBank.Domain.Repositories;
+﻿using MyBank.Domain.Commands;
+using MyBank.Domain.Repositories;
+using MyBank.Domain.ValueObjects;
 using System;
+using System.Threading.Tasks;
 
 namespace MyBank.Domain.Services
 {
@@ -14,31 +17,31 @@ namespace MyBank.Domain.Services
             this.accountRepository = accountRepository;
         }
 
-        public AccountOpeningRequest ApproveAccountOpening(Guid clientId, Guid requestId)
+        public async Task<AccountOpeningRequest> ApproveAccountOpening(ApproveAccountOpeningRequest command)
         {
-            var request = accountOpeningRequestRepository.FindById(requestId);
+            var request = await accountOpeningRequestRepository.FindById(new RequestId(command.Id));
 
-            if (request.ClientId != clientId)
+            if (request.ClientId.Id != command.ClientId)
                 throw new Exception("Request is not from this client");
 
             request.Approve();
 
-            var account = Account.Create(clientId);
+            var account = Account.Create(request.ClientId);
             accountRepository.Add(account);
             
-            accountRepository.Save();
-            accountOpeningRequestRepository.Save();
+            await accountRepository.Save();
+            await accountOpeningRequestRepository.Save();
 
             return request;
         }
 
-        public AccountOpeningRequest DeclineAccountOpening(Guid requestId)
+        public async Task<AccountOpeningRequest> DeclineAccountOpening(DeclineAccountOpeningRequest command)
         {
-            var request = accountOpeningRequestRepository.FindById(requestId);
+            var request = await accountOpeningRequestRepository.FindById(new RequestId(command.Id));
 
             request.Decline();
 
-            accountOpeningRequestRepository.Save();
+            await accountOpeningRequestRepository.Save();
 
             return request;
         }

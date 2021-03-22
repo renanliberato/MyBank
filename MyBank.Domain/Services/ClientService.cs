@@ -1,5 +1,7 @@
 ﻿using MyBank.Domain.Commands;
 using MyBank.Domain.Repositories;
+using MyBank.Domain.ValueObjects;
+using System.Threading.Tasks;
 
 namespace MyBank.Domain.Services
 {
@@ -12,13 +14,13 @@ namespace MyBank.Domain.Services
             this.clientRepository = clientRepository;
         }
 
-        public Client Register(BecomeClient command)
+        public async Task<Client> Register(BecomeClient command)
         {
-            var client = new Client(command.Name);
+            var client = new Client(new ClientName(command.Name));
 
             clientRepository.Add(client);
 
-            clientRepository.Save();
+            await clientRepository.Save();
 
             return client;
         }

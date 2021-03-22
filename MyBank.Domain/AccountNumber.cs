@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace MyBank.Domain
 {
     [DataContract]
-    public class AccountNumber
+    public class AccountNumber : IEquatable<AccountNumber>
     {
         [DataMember]
         public string Number { get; }
@@ -27,6 +27,11 @@ namespace MyBank.Domain
         public override string ToString()
         {
             return Number;
+        }
+
+        public bool Equals(AccountNumber other)
+        {
+            return this.Number == other.Number;
         }
     }
 }

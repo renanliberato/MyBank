@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyBank.Domain.ValueObjects;
+using System;
 using System.Runtime.Serialization;
 
 namespace MyBank.Domain
@@ -7,13 +8,15 @@ namespace MyBank.Domain
     public class Client
     {
         [DataMember]
-        public Guid Id { get; private set; }
+        public ClientId Id { get; private set; }
         [DataMember]
-        public string Name { get; private set; }
+        public ClientName Name { get; private set; }
 
-        public Client(string name)
+        public Client() { }
+
+        public Client(ClientName name)
         {
-            this.Id = Guid.NewGuid();
+            this.Id = new ClientId(Guid.NewGuid());
             this.Name = name;
         }
     }

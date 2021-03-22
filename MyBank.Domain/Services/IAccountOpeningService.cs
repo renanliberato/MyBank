@@ -1,9 +1,11 @@
-﻿using System;
+﻿using MyBank.Domain.Commands;
+using System;
+using System.Threading.Tasks;
 
 namespace MyBank.Domain.Services
 {
     public interface IAccountOpeningService
     {
-        AccountOpeningRequest RequestAccountOpening(Guid clientId);
+        Task<AccountOpeningRequest> RequestAccountOpening(RequestAccountOpening command);
     }
 }

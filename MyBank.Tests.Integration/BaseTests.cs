@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MyBank.Domain;
 using MyBank.Domain.Repositories;
 using MyBank.Domain.Services;
+using MyBank.Domain.ValueObjects;
 using MyBank.Infrastructure.EntityFrameworkCore;
 using System;
 using System.IO;
@@ -35,7 +36,7 @@ namespace MyBank.Tests.Integration
 
         protected Client CreateBankClient(string name)
         {
-            var client = new Client(name);
+            var client = new Client(new ClientName(name));
             context.Clients.Add(client);
             context.SaveChanges();
 

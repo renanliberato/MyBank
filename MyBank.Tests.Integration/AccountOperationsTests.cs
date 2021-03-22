@@ -34,9 +34,9 @@ namespace MyBank.Tests.Integration
             // Assert
             response.EnsureSuccessStatusCode();
 
-            var updatedBalance = context.Accounts.Where(a => a.Id == bankAccount.Id).Select(c => c.Balance.Amount).First();
+            var updatedAccount = context.Accounts.First(a => a.Id == bankAccount.Id);
 
-            Assert.Equal(100, updatedBalance);
+            Assert.Equal(100, updatedAccount.Balance.Amount);
         }
 
         [Fact]
@@ -59,9 +59,9 @@ namespace MyBank.Tests.Integration
             // Assert
             response.EnsureSuccessStatusCode();
 
-            var updatedBalance = context.Accounts.Where(a => a.Id == bankAccount.Id).Select(c => c.Balance.Amount).First();
+            var updatedBalance = context.Accounts.Where(a => a.Id == bankAccount.Id).First();
 
-            Assert.Equal(50, updatedBalance);
+            Assert.Equal(50, updatedBalance.Balance.Amount);
         }
 
         [Fact]

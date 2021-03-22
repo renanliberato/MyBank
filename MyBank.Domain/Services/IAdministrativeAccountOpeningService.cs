@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MyBank.Domain.Commands;
+using System;
+using System.Threading.Tasks;
 
 namespace MyBank.Domain.Services
 {
     public interface IAdministrativeAccountOpeningService
     {
-        AccountOpeningRequest ApproveAccountOpening(Guid clientId, Guid requestId);
-        AccountOpeningRequest DeclineAccountOpening(Guid requestId);
+        Task<AccountOpeningRequest> ApproveAccountOpening(ApproveAccountOpeningRequest command);
+        Task<AccountOpeningRequest> DeclineAccountOpening(DeclineAccountOpeningRequest command);
     }
 }

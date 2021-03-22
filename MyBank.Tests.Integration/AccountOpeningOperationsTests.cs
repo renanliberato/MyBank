@@ -28,7 +28,7 @@ namespace MyBank.Tests.Integration
             // Act
             var command = new RequestAccountOpening
             {
-                ClientId = bankClient.Id
+                ClientId = bankClient.Id.Id
             };
             var content = JsonContent.Create(command);
             var response = await client.PostAsync("/api/accountopeningrequest", content);

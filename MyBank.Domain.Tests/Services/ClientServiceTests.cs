@@ -2,6 +2,7 @@
 using MyBank.Domain.Commands;
 using MyBank.Domain.Repositories;
 using MyBank.Domain.Services;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MyBank.Domain.Tests.Services
@@ -9,7 +10,7 @@ namespace MyBank.Domain.Tests.Services
     public class ClientServiceTests
     {
         [Fact]
-        public void Register_CreatesAndPersistsANewClient()
+        public async Task Register_CreatesAndPersistsANewClient()
         {
             var repository = new Mock<IClientRepository>();
             var command = new BecomeClient
@@ -18,10 +19,10 @@ namespace MyBank.Domain.Tests.Services
             };
             var service = new ClientService(repository.Object);
 
-            var client = service.Register(command);
+            var client = await service.Register(command);
 
-            Assert.Equal(command.Name, client.Name);
-            repository.Verify(obj => obj.Add(It.Is<Client>(r => r.Name == command.Name)), Times.Once);
+            Assert.Equal(command.Name, client.Name.Name);
+            repository.Verify(obj => obj.Add(It.Is<Client>(r => r.Name.Name == command.Name)), Times.Once);
             repository.Verify(obj => obj.Save(), Times.Once);
         }
     }

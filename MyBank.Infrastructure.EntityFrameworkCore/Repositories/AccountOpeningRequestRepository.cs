@@ -1,7 +1,10 @@
-﻿using MyBank.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using MyBank.Domain;
 using MyBank.Domain.Repositories;
+using MyBank.Domain.ValueObjects;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MyBank.Infrastructure.EntityFrameworkCore.Repositories
 {
@@ -19,14 +22,14 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Repositories
             this.context.AccountOpeningRequests.Add(request);
         }
 
-        public AccountOpeningRequest FindById(Guid id)
+        public Task<AccountOpeningRequest> FindById(RequestId requestId)
         {
-            return this.context.AccountOpeningRequests.First(a => a.Id == id);
+            return this.context.AccountOpeningRequests.FirstAsync(a => a.Id == requestId);
         }
 
-        public void Save()
+        public Task Save()
         {
-            this.context.SaveChanges();
+            return this.context.SaveChangesAsync();
         }
     }
 }

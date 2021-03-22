@@ -1,4 +1,5 @@
 ﻿using MyBank.Domain.Exceptions;
+using MyBank.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -9,9 +10,9 @@ namespace MyBank.Domain
     public class Account
     {
         [DataMember]
-        public string Id { get; private set; }
+        public AccountId Id { get; private set; }
         [DataMember]
-        public Guid ClientId { get; private set; }
+        public ClientId ClientId { get; private set; }
         [DataMember]
         public AccountNumber Number { get; private set; }
         [DataMember]
@@ -22,28 +23,28 @@ namespace MyBank.Domain
             this.Number = new AccountNumber();
             this.Balance = new AccountBalance();
             
-            this.Id = this.Number.Number;
+            this.Id = new AccountId(this.Number.Number);
         }
 
-        private Account(AccountNumber number, AccountBalance balance, Guid clientId)
+        private Account(AccountNumber number, AccountBalance balance, ClientId clientId)
         {
             this.Number = number;
             this.Balance = balance;
             this.ClientId = clientId;
 
-            this.Id = this.Number.Number;
+            this.Id = new AccountId(this.Number.Number);
         }
         
-        public static Account Create(Guid clientId)
+        public static Account Create(ClientId clientId)
         {
             var instance = new Account(new AccountNumber(), new AccountBalance(), clientId);
 
-            instance.Id = instance.Number.Number;
+            instance.Id = new AccountId(instance.Number.Number);
 
             return instance;
         }
 
-        public static Account FromExistingData(AccountNumber number, AccountBalance balance, Guid clientId)
+        public static Account FromExistingData(AccountNumber number, AccountBalance balance, ClientId clientId)
         {
             return new Account(number, balance, clientId);
         }
@@ -58,7 +59,7 @@ namespace MyBank.Domain
             if (amount <= 0)
                 throw new InvalidDepositAmountException("Amount to deposit must be greater than zero");
 
-            this.Balance.Increase(amount);
+            this.Balance = new AccountBalance(this.Balance.Amount + amount);
         }
 
         public void Withdraw(float amount)
@@ -69,7 +70,7 @@ namespace MyBank.Domain
             if ((float)this.Balance < amount)
                 throw new InsufficientFundsException("You do not have balance to this operation");
 
-            this.Balance.Decrease(amount);
+            this.Balance = new AccountBalance(this.Balance.Amount - amount);
         }
 
         public string GetNumber()

@@ -1,9 +1,11 @@
-﻿namespace MyBank.Domain.Repositories
+﻿using System.Threading.Tasks;
+
+namespace MyBank.Domain.Repositories
 {
     public interface IAccountRepository
     {
-        Account FindByNumber(AccountNumber number);
-        void Save();
+        Task<Account> FindByNumber(AccountNumber number);
+        Task Save();
         void Add(Account account);
     }
 }

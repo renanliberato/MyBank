@@ -1,5 +1,8 @@
-﻿using MyBank.Domain.Repositories;
+﻿using MyBank.Domain.Commands;
+using MyBank.Domain.Repositories;
+using MyBank.Domain.ValueObjects;
 using System;
+using System.Threading.Tasks;
 
 namespace MyBank.Domain.Services
 {
@@ -12,11 +15,11 @@ namespace MyBank.Domain.Services
             this.accountOpeningRequestRepository = accountOpeningRequestRepository;
         }
 
-        public AccountOpeningRequest RequestAccountOpening(Guid clientId)
+        public async Task<AccountOpeningRequest> RequestAccountOpening(RequestAccountOpening command)
         {
-            var request = new AccountOpeningRequest(clientId);
+            var request = new AccountOpeningRequest(new ClientId(command.ClientId));
             accountOpeningRequestRepository.Add(request);
-            accountOpeningRequestRepository.Save();
+            await accountOpeningRequestRepository.Save();
 
             return request;
         }

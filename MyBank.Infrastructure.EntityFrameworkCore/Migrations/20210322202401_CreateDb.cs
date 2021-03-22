@@ -12,7 +12,7 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    ClientId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ClientId = table.Column<Guid>(type: "TEXT", nullable: true),
                     Status = table.Column<int>(type: "INTEGER", nullable: false),
                     RequestedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
@@ -26,9 +26,9 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    ClientId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ClientId = table.Column<Guid>(type: "TEXT", nullable: true),
                     Number = table.Column<string>(type: "TEXT", nullable: true),
-                    Amount = table.Column<float>(type: "REAL", nullable: true)
+                    Balance = table.Column<float>(type: "REAL", nullable: true)
                 },
                 constraints: table =>
                 {

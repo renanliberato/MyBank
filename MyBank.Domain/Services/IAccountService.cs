@@ -1,9 +1,11 @@
-﻿namespace MyBank.Domain.Services
+﻿using System.Threading.Tasks;
+
+namespace MyBank.Domain.Services
 {
     public interface IAccountService
     {
-        void Transfer(AccountNumber fromNumber, AccountNumber toNumber, float amount);
-        void Deposit(AccountNumber accountNumber, float amount);
-        void Withdraw(AccountNumber accountNumber, float amount);
+        Task Transfer(AccountNumber fromNumber, AccountNumber toNumber, float amount);
+        Task Deposit(AccountNumber accountNumber, float amount);
+        Task Withdraw(AccountNumber accountNumber, float amount);
     }
 }

@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace MyBank.Domain.Repositories
 {
     public interface IClientRepository
     {
-        Client FindById(Guid id);
-        void Save();
+        Task Save();
         void Add(Client client);
     }
 }

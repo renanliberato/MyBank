@@ -21,7 +21,13 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ClientId")
+                    b.Property<float?>("Balance")
+                        .HasColumnType("REAL");
+
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Number")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -32,10 +38,9 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Migrations
             modelBuilder.Entity("MyBank.Domain.AccountOpeningRequest", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ClientId")
+                    b.Property<Guid?>("ClientId")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("RequestedAt")
@@ -52,7 +57,6 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Migrations
             modelBuilder.Entity("MyBank.Domain.Client", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -61,47 +65,6 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("MyBank.Domain.Account", b =>
-                {
-                    b.OwnsOne("MyBank.Domain.AccountBalance", "Balance", b1 =>
-                        {
-                            b1.Property<string>("AccountId")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<float>("Amount")
-                                .HasColumnType("REAL")
-                                .HasColumnName("Amount");
-
-                            b1.HasKey("AccountId");
-
-                            b1.ToTable("Accounts");
-
-                            b1.WithOwner()
-                                .HasForeignKey("AccountId");
-                        });
-
-                    b.OwnsOne("MyBank.Domain.AccountNumber", "Number", b1 =>
-                        {
-                            b1.Property<string>("AccountId")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<string>("Number")
-                                .HasColumnType("TEXT")
-                                .HasColumnName("Number");
-
-                            b1.HasKey("AccountId");
-
-                            b1.ToTable("Accounts");
-
-                            b1.WithOwner()
-                                .HasForeignKey("AccountId");
-                        });
-
-                    b.Navigation("Balance");
-
-                    b.Navigation("Number");
                 });
 #pragma warning restore 612, 618
         }

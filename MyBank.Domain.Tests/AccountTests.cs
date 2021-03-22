@@ -1,4 +1,5 @@
 ﻿using MyBank.Domain.Exceptions;
+using MyBank.Domain.ValueObjects;
 using System;
 using Xunit;
 
@@ -11,7 +12,7 @@ namespace MyBank.Domain.Tests
         [Fact]
         public void Deposit_WithZeroValue_ThrowsException()
         {
-            var account = Account.Create(Guid.NewGuid());
+            var account = Account.Create(new ClientId(Guid.NewGuid()));
 
             Assert.Throws<InvalidDepositAmountException>(() => account.Deposit(0));
         }
@@ -19,7 +20,7 @@ namespace MyBank.Domain.Tests
         [Fact]
         public void Deposit_WithValidValue_IncreasesAccountBalance()
         {
-            var account = Account.Create(Guid.NewGuid());
+            var account = Account.Create(new ClientId(Guid.NewGuid()));
             var amountToDeposit = random.Next(1, 100);
 
             account.Deposit(amountToDeposit);
@@ -30,7 +31,7 @@ namespace MyBank.Domain.Tests
         [Fact]
         public void Withdraw_WithZeroValue_ThrowsException()
         {
-            var account = Account.Create(Guid.NewGuid());
+            var account = Account.Create(new ClientId(Guid.NewGuid()));
 
             Assert.Throws<InvalidWithdrawAmountException>(() => account.Withdraw(0));
         }
@@ -38,7 +39,7 @@ namespace MyBank.Domain.Tests
         [Fact]
         public void Withdraw_WithAValueBiggerThanBalance_ThrowsException()
         {
-            var account = Account.Create(Guid.NewGuid());
+            var account = Account.Create(new ClientId(Guid.NewGuid()));
             var amountToWithdraw = random.Next(1, 100);
 
             account.Deposit(amountToWithdraw - 1);
@@ -49,7 +50,7 @@ namespace MyBank.Domain.Tests
         [Fact]
         public void Withdraw_WithValidValue_DecreasesAccountBalance()
         {
-            var account = Account.Create(Guid.NewGuid());
+            var account = Account.Create(new ClientId(Guid.NewGuid()));
             var amountToWithdraw = random.Next(1, 100);
 
             account.Deposit(amountToWithdraw);

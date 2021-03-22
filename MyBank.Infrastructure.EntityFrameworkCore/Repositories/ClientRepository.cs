@@ -3,6 +3,7 @@ using MyBank.Domain;
 using MyBank.Domain.Repositories;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MyBank.Infrastructure.EntityFrameworkCore.Repositories
 {
@@ -20,14 +21,9 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Repositories
             this.context.Clients.Add(client);
         }
 
-        public Client FindById(Guid id)
+        public Task Save()
         {
-            return this.context.Clients.First(a => a.Id == id);
-        }
-
-        public void Save()
-        {
-            this.context.SaveChanges();
+            return this.context.SaveChangesAsync();
         }
     }
 }

@@ -22,9 +22,9 @@ namespace MyBank.Controllers
         }
 
         [HttpPost]
-        public AccountOpeningRequest CreateRequest([FromBody] RequestAccountOpening command)
+        public Task<AccountOpeningRequest> CreateRequest([FromBody] RequestAccountOpening command)
         {
-            return accountOpeningService.RequestAccountOpening(command.ClientId);
+            return accountOpeningService.RequestAccountOpening(command);
         }
     }
 }

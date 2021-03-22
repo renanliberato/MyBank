@@ -1,4 +1,5 @@
 ﻿using MyBank.Domain.Repositories;
+using System.Threading.Tasks;
 
 namespace MyBank.Domain.Services
 {
@@ -11,33 +12,33 @@ namespace MyBank.Domain.Services
             this.accountRepository = accountRepository;
         }
 
-        public void Deposit(AccountNumber accountNumber, float amount)
+        public async Task Deposit(AccountNumber accountNumber, float amount)
         {
-            var account = accountRepository.FindByNumber(accountNumber);
+            var account = await accountRepository.FindByNumber(accountNumber);
             
             account.Deposit(amount);
 
-            accountRepository.Save();
+            await accountRepository.Save();
         }
 
-        public void Transfer(AccountNumber fromNumber, AccountNumber toNumber, float amount)
+        public async Task Transfer(AccountNumber fromNumber, AccountNumber toNumber, float amount)
         {
-            var from = accountRepository.FindByNumber(fromNumber);
-            var to = accountRepository.FindByNumber(toNumber);
+            var from = await accountRepository.FindByNumber(fromNumber);
+            var to = await accountRepository.FindByNumber(toNumber);
 
             from.Withdraw(amount);
             to.Deposit(amount);
 
-            accountRepository.Save();
+            await accountRepository.Save();
         }
 
-        public void Withdraw(AccountNumber accountNumber, float amount)
+        public async Task Withdraw(AccountNumber accountNumber, float amount)
         {
-            var account = accountRepository.FindByNumber(accountNumber);
+            var account = await accountRepository.FindByNumber(accountNumber);
 
             account.Withdraw(amount);
 
-            accountRepository.Save();
+            await accountRepository.Save();
         }
     }
 }

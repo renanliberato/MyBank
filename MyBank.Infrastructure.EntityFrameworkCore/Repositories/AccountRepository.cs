@@ -1,6 +1,8 @@
-﻿using MyBank.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using MyBank.Domain;
 using MyBank.Domain.Repositories;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MyBank.Infrastructure.EntityFrameworkCore.Repositories
 {
@@ -18,14 +20,14 @@ namespace MyBank.Infrastructure.EntityFrameworkCore.Repositories
             this.context.Accounts.Add(account);
         }
 
-        public Account FindByNumber(AccountNumber number)
+        public Task<Account> FindByNumber(AccountNumber number)
         {
-            return this.context.Accounts.First(a => a.Number.Number == number.Number);
+            return this.context.Accounts.FirstAsync(a => a.Number == number);
         }
 
-        public void Save()
+        public Task Save()
         {
-            this.context.SaveChanges();
+            return this.context.SaveChangesAsync();
         }
     }
 }

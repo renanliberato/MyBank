@@ -2,6 +2,7 @@
 using MyBank.Domain;
 using MyBank.Domain.Commands;
 using MyBank.Domain.Services;
+using System.Threading.Tasks;
 
 namespace MyBank.Controllers
 {
@@ -18,23 +19,23 @@ namespace MyBank.Controllers
 
         [HttpPost]
         [Route("deposit")]
-        public void Deposit([FromBody] MakeDeposit command)
+        public Task Deposit([FromBody] MakeDeposit command)
         {
-            accountService.Deposit(AccountNumber.FromNumber(command.AccountNumber), command.Amount);
+            return accountService.Deposit(AccountNumber.FromNumber(command.AccountNumber), command.Amount);
         }
 
         [HttpPost]
         [Route("withdraw")]
-        public void Withdraw([FromBody] MakeWithdraw command)
+        public Task Withdraw([FromBody] MakeWithdraw command)
         {
-            accountService.Withdraw(AccountNumber.FromNumber(command.AccountNumber), command.Amount);
+            return accountService.Withdraw(AccountNumber.FromNumber(command.AccountNumber), command.Amount);
         }
 
         [HttpPost]
         [Route("transfer")]
-        public void Transfer([FromBody] MakeTransfer command)
+        public Task Transfer([FromBody] MakeTransfer command)
         {
-            accountService.Transfer(
+            return accountService.Transfer(
                 AccountNumber.FromNumber(command.From),
                 AccountNumber.FromNumber(command.To),
                 command.Amount);

@@ -1,9 +1,10 @@
 ﻿using MyBank.Domain.Commands;
+using System.Threading.Tasks;
 
 namespace MyBank.Domain.Services
 {
     public interface IClientService
     {
-        Client Register(BecomeClient command);
+        Task<Client> Register(BecomeClient command);
     }
 }
