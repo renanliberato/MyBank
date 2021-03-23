@@ -33,7 +33,7 @@ namespace MyBank.Tests.Integration
                 Id = request.Id.Id
             };
             var content = JsonContent.Create(command);
-            var response = await client.PostAsync("/api/administrativeaccountopeningrequest/approve", content);
+            var response = await client.PostAsync("/api/openaccount/administrative/approve", content);
 
             // Assert
             response.EnsureSuccessStatusCode();
@@ -63,7 +63,7 @@ namespace MyBank.Tests.Integration
                 Id = request.Id.Id
             };
             var content = JsonContent.Create(command);
-            var response = await client.PostAsync("/api/administrativeaccountopeningrequest/decline", content);
+            var response = await client.PostAsync("/api/openaccount/administrative/decline", content);
 
             // Assert
             response.EnsureSuccessStatusCode();

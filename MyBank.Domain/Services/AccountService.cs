@@ -1,4 +1,5 @@
-﻿using MyBank.Domain.Repositories;
+﻿using MyBank.Domain.Commands;
+using MyBank.Domain.Repositories;
 using System.Threading.Tasks;
 
 namespace MyBank.Domain.Services
@@ -10,6 +11,16 @@ namespace MyBank.Domain.Services
         public AccountService(IAccountRepository accountRepository)
         {
             this.accountRepository = accountRepository;
+        }
+
+        public async Task<Account> MakeAccount(MakeAccount command)
+        {
+            var account = Account.Create(command.ClientId);
+            accountRepository.Add(account);
+
+            await accountRepository.Save();
+
+            return account;
         }
 
         public async Task Deposit(AccountNumber accountNumber, float amount)

@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace MyBank.Domain.Services
 {
+
     public class AdministrativeAccountOpeningService : IAdministrativeAccountOpeningService
     {
         private readonly IAccountOpeningRequestRepository accountOpeningRequestRepository;
-        private readonly IAccountRepository accountRepository;
+        private readonly IAccountClient accountClient;
 
-        public AdministrativeAccountOpeningService(IAccountOpeningRequestRepository accountOpeningRequestRepository, IAccountRepository accountRepository)
+        public AdministrativeAccountOpeningService(IAccountOpeningRequestRepository accountOpeningRequestRepository, IAccountClient accountClient)
         {
             this.accountOpeningRequestRepository = accountOpeningRequestRepository;
-            this.accountRepository = accountRepository;
+            this.accountClient = accountClient;
         }
 
         public async Task<AccountOpeningRequest> ApproveAccountOpening(ApproveAccountOpeningRequest command)
@@ -25,12 +26,11 @@ namespace MyBank.Domain.Services
                 throw new Exception("Request is not from this client");
 
             request.Approve();
-
-            var account = Account.Create(request.ClientId);
-            accountRepository.Add(account);
             
-            await accountRepository.Save();
             await accountOpeningRequestRepository.Save();
+
+            await accountClient.MakeAccount(request.ClientId);
+
 
             return request;
         }

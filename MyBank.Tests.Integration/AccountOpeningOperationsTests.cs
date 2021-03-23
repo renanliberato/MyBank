@@ -31,7 +31,7 @@ namespace MyBank.Tests.Integration
                 ClientId = bankClient.Id.Id
             };
             var content = JsonContent.Create(command);
-            var response = await client.PostAsync("/api/accountopeningrequest", content);
+            var response = await client.PostAsync("/api/openaccount/open", content);
 
             // Assert
             response.EnsureSuccessStatusCode();

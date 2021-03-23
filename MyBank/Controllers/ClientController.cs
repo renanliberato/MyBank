@@ -4,9 +4,9 @@ using MyBank.Domain.Commands;
 using MyBank.Domain.Services;
 using System.Threading.Tasks;
 
-namespace MyBank.Controllers
+namespace MyBank.Clients.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class ClientController : ControllerBase
     {

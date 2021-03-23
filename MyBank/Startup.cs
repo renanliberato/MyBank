@@ -1,17 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MyBank.Clients.Infrastructure.EntityFrameworkCore;
+using MyBank.Clients.Infrastructure.Infrastructure.EntityFrameworkCore.Repositories;
 using MyBank.Domain.Repositories;
 using MyBank.Domain.Services;
-using MyBank.Infrastructure.EntityFrameworkCore;
-using MyBank.Infrastructure.EntityFrameworkCore.Repositories;
 
-namespace MyBank
+namespace MyBank.Clients.WebAPI
 {
     public class Startup
     {
@@ -26,13 +24,8 @@ namespace MyBank
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<AccountContext>()
-                .AddTransient<IAccountRepository, AccountRepository>()
-                .AddTransient<IAccountOpeningRequestRepository, AccountOpeningRequestRepository>()
+            services.AddDbContext<ClientContext>()
                 .AddTransient<IClientRepository, ClientRepository>()
-                .AddTransient<IAdministrativeAccountOpeningService, AdministrativeAccountOpeningService>()
-                .AddTransient<IAccountService, AccountService>()
-                .AddTransient<IAccountOpeningService, AccountOpeningService>()
                 .AddTransient<IClientService, ClientService>();
         }
 
@@ -42,12 +35,6 @@ namespace MyBank
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
@@ -70,7 +57,7 @@ namespace MyBank
                 .GetRequiredService<IServiceScopeFactory>()
                 .CreateScope())
             {
-                using (var context = serviceScope.ServiceProvider.GetService<AccountContext>())
+                using (var context = serviceScope.ServiceProvider.GetService<ClientContext>())
                 {
                     //context.Database.EnsureCreated();
                     context.Database.Migrate();

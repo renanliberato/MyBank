@@ -1,23 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using MyBank.Domain;
-using MyBank.Domain.Repositories;
-using MyBank.Domain.Services;
 using MyBank.Domain.ValueObjects;
-using MyBank.Infrastructure.EntityFrameworkCore;
 using System;
-using System.IO;
 using Xunit;
 
 namespace MyBank.Tests.Integration
 {
     [Collection(nameof(SystemTestCollectionDefinition))]
-    public class BaseTests : IClassFixture<WebApplicationFactory<MyBank.Startup>>, IDisposable
+    public class BaseTests : IClassFixture<WebApplicationFactory<Startup>>, IDisposable
     {
-        protected readonly WebApplicationFactory<MyBank.Startup> _factory;
+        protected readonly WebApplicationFactory<Startup> _factory;
         protected readonly AccountContext context;
 
-        public BaseTests(WebApplicationFactory<MyBank.Startup> factory)
+        public BaseTests(WebApplicationFactory<Startup> factory)
         {
             _factory = factory;
             AccountContext.DbName = "accounts_test.db";

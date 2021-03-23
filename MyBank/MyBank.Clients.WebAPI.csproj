@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <DefaultItemExcludes>$(DefaultItemExcludes)</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyBank.Clients.Infrastructure.EntityFrameworkCore\MyBank.Clients.Infrastructure.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\MyBank.Domain\MyBank.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
