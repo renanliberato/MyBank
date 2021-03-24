@@ -27,8 +27,7 @@ namespace MyBank.Clients.WebAPI
         {
             services.AddControllersWithViews();
             services.AddDbContext<ClientContext>()
-                .AddSingleton<IEventProducer, DummyEventProducer>()
-                //.AddSingleton<IEventProducer, RabbitMQEventProducer>()
+                .AddSingleton<IEventProducerFactory, DummyEventProducerFactory>()
                 .AddTransient<IClientRepository, ClientRepository>()
                 .AddTransient<IClientService, ClientService>();
         }

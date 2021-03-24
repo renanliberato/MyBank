@@ -10,14 +10,16 @@ namespace MyBank.Infrastructure.Events
     {
         private readonly IConnection connection;
         private readonly IModel channel;
+        private readonly string topicName;
 
-        public RabbitMQEventProducer()
+        public RabbitMQEventProducer(string topicName)
         {
+            this.topicName = topicName;
             var factory = new ConnectionFactory() { HostName = "localhost" };
             this.connection = factory.CreateConnection();
             this.channel = connection.CreateModel();
 
-            channel.QueueDeclare(queue: "hello",
+            channel.QueueDeclare(queue: topicName,
                             durable: false,
                             exclusive: false,
                             autoDelete: false,
@@ -35,7 +37,7 @@ namespace MyBank.Infrastructure.Events
             var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(theEvent));
 
             channel.BasicPublish(exchange: "",
-                                 routingKey: "hello",
+                                 routingKey: this.topicName,
                                  basicProperties: null,
                                  body: body);
 

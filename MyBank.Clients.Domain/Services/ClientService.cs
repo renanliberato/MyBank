@@ -12,10 +12,10 @@ namespace MyBank.Clients.Domain.Services
         private readonly IClientRepository clientRepository;
         private readonly IEventProducer eventProducer;
 
-        public ClientService(IClientRepository clientRepository, IEventProducer eventProducer)
+        public ClientService(IClientRepository clientRepository, IEventProducerFactory eventProducerFactory)
         {
             this.clientRepository = clientRepository;
-            this.eventProducer = eventProducer;
+            this.eventProducer = eventProducerFactory.Create("clients_removed");
         }
 
         public async Task<Client> Register(BecomeClient command)
