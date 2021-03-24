@@ -2,6 +2,8 @@
 using MyBank.Clients.Domain;
 using MyBank.Clients.Domain.Commands;
 using MyBank.Clients.Domain.Services;
+using MyBank.Domain.Shared.ValueObjects;
+using System;
 using System.Threading.Tasks;
 
 namespace MyBank.Clients.WebAPI.Controllers
@@ -21,6 +23,12 @@ namespace MyBank.Clients.WebAPI.Controllers
         public Task<Client> Register([FromBody] BecomeClient command)
         {
             return clientService.Register(command);
+        }
+
+        [HttpDelete]
+        public Task Remove()
+        {
+            return clientService.Remove(new ClientId(Guid.Parse(Request.Query["Id"].ToArray()[0])));
         }
     }
 }

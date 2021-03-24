@@ -52,5 +52,10 @@ namespace MyBank.Accounts.Domain.Services
 
             await accountRepository.Save();
         }
+
+        public Task RemoveAcountFromRemovedClient(ClientId clientId)
+        {
+            return accountRepository.RemoveFromClientId(clientId);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyBank.Domain.Shared.ValueObjects;
+using System;
 using System.Threading.Tasks;
 
 namespace MyBank.Clients.Domain.Repositories
@@ -7,5 +8,6 @@ namespace MyBank.Clients.Domain.Repositories
     {
         Task Save();
         void Add(Client client);
+        Task Remove(ClientId jd);
     }
 }

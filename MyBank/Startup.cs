@@ -8,6 +8,8 @@ using MyBank.Clients.Infrastructure.EntityFrameworkCore;
 using MyBank.Clients.Infrastructure.Infrastructure.EntityFrameworkCore.Repositories;
 using MyBank.Clients.Domain.Repositories;
 using MyBank.Clients.Domain.Services;
+using MyBank.Domain.Shared.Events;
+using MyBank.Infrastructure.Events;
 
 namespace MyBank.Clients.WebAPI
 {
@@ -25,6 +27,8 @@ namespace MyBank.Clients.WebAPI
         {
             services.AddControllersWithViews();
             services.AddDbContext<ClientContext>()
+                .AddSingleton<IEventProducer, DummyEventProducer>()
+                //.AddSingleton<IEventProducer, RabbitMQEventProducer>()
                 .AddTransient<IClientRepository, ClientRepository>()
                 .AddTransient<IClientService, ClientService>();
         }

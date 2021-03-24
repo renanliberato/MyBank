@@ -9,6 +9,7 @@ namespace MyBank.Accounts.Domain.Services
         Task Transfer(AccountNumber fromNumber, AccountNumber toNumber, float amount);
         Task Deposit(AccountNumber accountNumber, float amount);
         Task Withdraw(AccountNumber accountNumber, float amount);
+        Task RemoveAcountFromRemovedClient(ClientId clientId);
         Task<AccountId> MakeAccount(MakeAccount command);
     }
 }

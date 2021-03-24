@@ -31,19 +31,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.OpenAccount.Tests.In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.Accounts.WebAPI.Client", "MyBank.Accounts.WebAPI.Client\MyBank.Accounts.WebAPI.Client.csproj", "{8F088F0F-CC8B-4275-BC67-D930206658CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.Domain.Shared", "MyBank.Domain.Shared\MyBank.Domain.Shared.csproj", "{50F86C56-1E7E-4CF7-8180-1B94299DEFD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.Domain.Shared", "MyBank.Domain.Shared\MyBank.Domain.Shared.csproj", "{50F86C56-1E7E-4CF7-8180-1B94299DEFD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.Accounts.Domain", "MyBank.Accounts.Domain\MyBank.Accounts.Domain.csproj", "{44DE5A10-5571-4EDE-BDDE-48D98A1F75C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.Accounts.Domain", "MyBank.Accounts.Domain\MyBank.Accounts.Domain.csproj", "{44DE5A10-5571-4EDE-BDDE-48D98A1F75C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.Clients.Domain", "MyBank.Clients.Domain\MyBank.Clients.Domain.csproj", "{3FC1851D-F017-4725-BBCB-F130F3FB7A8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.Clients.Domain", "MyBank.Clients.Domain\MyBank.Clients.Domain.csproj", "{3FC1851D-F017-4725-BBCB-F130F3FB7A8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.OpenAccount.Domain", "MyBank.OpenAccount.Domain\MyBank.OpenAccount.Domain.csproj", "{C7DD0071-C22C-4337-8E26-E877BBF0BCF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.OpenAccount.Domain", "MyBank.OpenAccount.Domain\MyBank.OpenAccount.Domain.csproj", "{C7DD0071-C22C-4337-8E26-E877BBF0BCF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.Accounts.Tests", "MyBank.Accounts.Tests\MyBank.Accounts.Tests.csproj", "{90422644-C911-4042-8582-98C1C9C944DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.Accounts.Tests", "MyBank.Accounts.Tests\MyBank.Accounts.Tests.csproj", "{90422644-C911-4042-8582-98C1C9C944DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.Clients.Tests", "MyBank.Clients.Tests\MyBank.Clients.Tests.csproj", "{8BB6A4F9-B9B3-42CC-B275-09B34C9A9C0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.Clients.Tests", "MyBank.Clients.Tests\MyBank.Clients.Tests.csproj", "{8BB6A4F9-B9B3-42CC-B275-09B34C9A9C0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.OpenAccount.Tests", "MyBank.OpenAccount.Tests\MyBank.OpenAccount.Tests.csproj", "{9FEE7B12-7BCE-4852-8932-06178B3AAFF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank.OpenAccount.Tests", "MyBank.OpenAccount.Tests\MyBank.OpenAccount.Tests.csproj", "{9FEE7B12-7BCE-4852-8932-06178B3AAFF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank.Infrastructure.Events", "MyBank.Infrastructure.Events\MyBank.Infrastructure.Events.csproj", "{58091A24-BCB3-4191-B19A-9560A91FCA19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,10 @@ Global
 		{9FEE7B12-7BCE-4852-8932-06178B3AAFF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FEE7B12-7BCE-4852-8932-06178B3AAFF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FEE7B12-7BCE-4852-8932-06178B3AAFF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58091A24-BCB3-4191-B19A-9560A91FCA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58091A24-BCB3-4191-B19A-9560A91FCA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58091A24-BCB3-4191-B19A-9560A91FCA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58091A24-BCB3-4191-B19A-9560A91FCA19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

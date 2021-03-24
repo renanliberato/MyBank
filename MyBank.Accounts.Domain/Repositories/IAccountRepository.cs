@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using MyBank.Domain.Shared.ValueObjects;
+using System.Threading.Tasks;
 
 namespace MyBank.Accounts.Domain.Repositories
 {
@@ -6,6 +7,7 @@ namespace MyBank.Accounts.Domain.Repositories
     {
         Task<Account> FindByNumber(AccountNumber number);
         Task Save();
+        Task RemoveFromClientId(ClientId clientId);
         void Add(Account account);
     }
 }

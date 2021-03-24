@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MyBank.Clients.Infrastructure.EntityFrameworkCore\MyBank.Clients.Infrastructure.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\MyBank.Infrastructure.Events\MyBank.Infrastructure.Events.csproj" />
   </ItemGroup>
 
 </Project>
