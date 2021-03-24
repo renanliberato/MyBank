@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
-using MyBank.Domain;
-using MyBank.Domain.Commands;
-using MyBank.Domain.ValueObjects;
+using MyBank.OpenAccount.Domain;
+using MyBank.OpenAccount.Domain.Commands;
+using MyBank.Domain.Shared.ValueObjects;
+using MyBank.OpenAccount.Domain.ValueObjects;
 using MyBank.OpenAccount.WebAPI;
 using Newtonsoft.Json;
 using System;

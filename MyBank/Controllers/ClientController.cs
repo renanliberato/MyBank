@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyBank.Domain;
-using MyBank.Domain.Commands;
-using MyBank.Domain.Services;
+using MyBank.Clients.Domain;
+using MyBank.Clients.Domain.Commands;
+using MyBank.Clients.Domain.Services;
 using System.Threading.Tasks;
 
 namespace MyBank.Clients.WebAPI.Controllers

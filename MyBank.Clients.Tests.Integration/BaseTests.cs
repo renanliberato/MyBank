@@ -2,12 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyBank.Clients.Infrastructure.EntityFrameworkCore;
 using MyBank.Clients.WebAPI;
-using MyBank.Domain;
-using MyBank.Domain.Repositories;
-using MyBank.Domain.Services;
-using MyBank.Domain.ValueObjects;
 using System;
-using System.IO;
 using Xunit;
 
 namespace MyBank.Clients.Tests.Integration

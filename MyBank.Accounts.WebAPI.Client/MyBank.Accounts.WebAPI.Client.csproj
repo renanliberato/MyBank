@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MyBank.Domain\MyBank.Domain.csproj" />
+    <ProjectReference Include="..\MyBank.Accounts.Domain\MyBank.Accounts.Domain.csproj" />
   </ItemGroup>
 
 </Project>

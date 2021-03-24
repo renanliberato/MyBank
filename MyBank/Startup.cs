@@ -6,8 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyBank.Clients.Infrastructure.EntityFrameworkCore;
 using MyBank.Clients.Infrastructure.Infrastructure.EntityFrameworkCore.Repositories;
-using MyBank.Domain.Repositories;
-using MyBank.Domain.Services;
+using MyBank.Clients.Domain.Repositories;
+using MyBank.Clients.Domain.Services;
 
 namespace MyBank.Clients.WebAPI
 {

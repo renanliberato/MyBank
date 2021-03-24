@@ -1,6 +1,6 @@
 ﻿using MyBank.Clients.Infrastructure.EntityFrameworkCore;
-using MyBank.Domain;
-using MyBank.Domain.Repositories;
+using MyBank.Clients.Domain;
+using MyBank.Clients.Domain.Repositories;
 using System.Threading.Tasks;
 
 namespace MyBank.Clients.Infrastructure.Infrastructure.EntityFrameworkCore.Repositories

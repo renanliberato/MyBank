@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyBank.Accounts.WebAPI.Client\MyBank.Accounts.WebAPI.Client.csproj" />
-    <ProjectReference Include="..\MyBank.Domain\MyBank.Domain.csproj" />
     <ProjectReference Include="..\MyBank.OpenAccount.Infrastructure.EntityFrameworkCore\MyBank.OpenAccount.Infrastructure.EntityFrameworkCore.csproj" />
   </ItemGroup>
 

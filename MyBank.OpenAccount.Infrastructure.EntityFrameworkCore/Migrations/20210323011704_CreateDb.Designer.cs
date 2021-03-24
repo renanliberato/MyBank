@@ -18,7 +18,7 @@ namespace MyBank.OpenAccount.Infrastructure.EntityFrameworkCore.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.4");
 
-            modelBuilder.Entity("MyBank.Domain.AccountOpeningRequest", b =>
+            modelBuilder.Entity("MyBank.OpenAccount.Domain.AccountOpeningRequest", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("TEXT");

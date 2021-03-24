@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MyBank.Domain\MyBank.Domain.csproj" />
+    <ProjectReference Include="..\MyBank.OpenAccount.Domain\MyBank.OpenAccount.Domain.csproj" />
   </ItemGroup>
 
 </Project>

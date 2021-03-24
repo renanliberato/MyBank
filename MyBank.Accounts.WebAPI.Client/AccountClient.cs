@@ -1,7 +1,7 @@
-﻿using MyBank.Domain;
-using MyBank.Domain.Commands;
-using MyBank.Domain.Services;
-using MyBank.Domain.ValueObjects;
+﻿using MyBank.Accounts.Domain;
+using MyBank.Accounts.Domain.Commands;
+using MyBank.Domain.Shared.Services;
+using MyBank.Domain.Shared.ValueObjects;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -19,7 +19,7 @@ namespace MyBank.Accounts.WebAPI.Client
             this.httpClient = new HttpClient();
         }
 
-        public async Task<Account> MakeAccount(ClientId clientId)
+        public async Task<AccountId> MakeAccount(ClientId clientId)
         {
             var content = JsonContent.Create(new MakeAccount
             {
@@ -30,7 +30,7 @@ namespace MyBank.Accounts.WebAPI.Client
 
             response.EnsureSuccessStatusCode();
 
-            return JsonConvert.DeserializeObject<Account>(await response.Content.ReadAsStringAsync());
+            return JsonConvert.DeserializeObject<AccountId>(await response.Content.ReadAsStringAsync());
         }
     }
 }

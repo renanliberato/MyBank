@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using MyBank.Accounts.WebAPI;
-using MyBank.Domain.Commands;
+using MyBank.Accounts.Domain.Commands;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Threading.Tasks;

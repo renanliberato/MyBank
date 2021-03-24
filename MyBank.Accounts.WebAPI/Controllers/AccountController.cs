@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyBank.Domain;
-using MyBank.Domain.Commands;
-using MyBank.Domain.Services;
+using MyBank.Accounts.Domain;
+using MyBank.Accounts.Domain.Commands;
+using MyBank.Accounts.Domain.Services;
+using MyBank.Domain.Shared.ValueObjects;
 using System.Threading.Tasks;
 
 namespace MyBank.Accounts.WebAPI.Controllers
@@ -19,7 +20,7 @@ namespace MyBank.Accounts.WebAPI.Controllers
 
         [HttpPost]
         [Route("create")]
-        public Task<Account> Create([FromBody] MakeAccount command)
+        public Task<AccountId> Create([FromBody] MakeAccount command)
         {
             return accountService.MakeAccount(command);
         }

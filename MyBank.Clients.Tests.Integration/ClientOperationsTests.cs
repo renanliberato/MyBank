@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using MyBank.Clients.WebAPI;
-using MyBank.Domain;
-using MyBank.Domain.Commands;
+using MyBank.Clients.Domain;
+using MyBank.Clients.Domain.Commands;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Net.Http.Json;

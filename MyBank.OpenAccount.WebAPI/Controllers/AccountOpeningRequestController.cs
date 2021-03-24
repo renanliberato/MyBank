@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MyBank.Domain;
-using MyBank.Domain.Commands;
-using MyBank.Domain.Services;
+using MyBank.OpenAccount.Domain;
+using MyBank.OpenAccount.Domain.Commands;
+using MyBank.OpenAccount.Domain.Services;
 
 namespace MyBank.OpenAccount.WebAPI.Controllers
 {

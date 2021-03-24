@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using MyBank.Accounts.Infrastructure.EntityFrameworkCore;
-using MyBank.Domain;
-using MyBank.Domain.ValueObjects;
+using MyBank.Accounts.Domain;
+using MyBank.Domain.Shared.ValueObjects;
 using System;
 using Xunit;
 

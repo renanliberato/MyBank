@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyBank.Domain;
-using MyBank.Domain.Repositories;
+using MyBank.Accounts.Domain;
+using MyBank.Accounts.Domain.Repositories;
 using System.Linq;
 using System.Threading.Tasks;
 

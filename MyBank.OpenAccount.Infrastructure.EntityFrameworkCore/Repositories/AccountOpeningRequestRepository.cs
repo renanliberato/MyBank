@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyBank.Domain;
-using MyBank.Domain.Repositories;
-using MyBank.Domain.ValueObjects;
+using MyBank.OpenAccount.Domain;
+using MyBank.OpenAccount.Domain.Repositories;
+using MyBank.OpenAccount.Domain.ValueObjects;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

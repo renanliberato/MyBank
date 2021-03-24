@@ -1,7 +1,6 @@
 ﻿using MyBank.Domain.Commands;
 using MyBank.Domain.Repositories;
-using MyBank.Domain.ValueObjects;
-using System;
+using MyBank.Domain.Shared.ValueObjects;
 using System.Threading.Tasks;
 
 namespace MyBank.Domain.Services

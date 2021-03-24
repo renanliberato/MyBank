@@ -5,12 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyBank.Accounts.WebAPI.Client;
-using MyBank.Domain;
-using MyBank.Domain.Repositories;
-using MyBank.Domain.Services;
+using MyBank.Domain.Shared.Services;
+using MyBank.OpenAccount.Domain.Repositories;
+using MyBank.OpenAccount.Domain.Services;
 using MyBank.OpenAccount.Infrastructure.EntityFrameworkCore;
 using MyBank.OpenAccount.Infrastructure.EntityFrameworkCore.Repositories;
-using System.Threading.Tasks;
 
 namespace MyBank.OpenAccount.WebAPI
 {

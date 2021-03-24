@@ -1,4 +1,5 @@
-﻿using MyBank.Domain.ValueObjects;
+﻿using MyBank.Domain.Shared.ValueObjects;
+using MyBank.Domain.ValueObjects;
 using System;
 using System.Runtime.Serialization;
 

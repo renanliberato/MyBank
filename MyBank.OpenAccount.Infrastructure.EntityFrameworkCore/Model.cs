@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyBank.Domain;
-using MyBank.Domain.ValueObjects;
+using MyBank.OpenAccount.Domain;
+using MyBank.Domain.Shared.ValueObjects;
+using MyBank.OpenAccount.Domain.ValueObjects;
 using System.IO;
 
 namespace MyBank.OpenAccount.Infrastructure.EntityFrameworkCore

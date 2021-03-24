@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
-using MyBank.Domain;
-using MyBank.Domain.Repositories;
-using MyBank.Domain.Services;
-using MyBank.Domain.ValueObjects;
+using MyBank.OpenAccount.Domain;
+using MyBank.Domain.Shared.ValueObjects;
 using MyBank.OpenAccount.Infrastructure.EntityFrameworkCore;
 using MyBank.OpenAccount.WebAPI;
 using System;
-using System.IO;
 using Xunit;
 
 namespace MyBank.OpenAccount.Tests.Integration

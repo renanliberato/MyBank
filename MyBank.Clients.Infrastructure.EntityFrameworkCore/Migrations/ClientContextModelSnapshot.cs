@@ -16,7 +16,7 @@ namespace MyBank.Clients.Infrastructure.EntityFrameworkCore.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.4");
 
-            modelBuilder.Entity("MyBank.Domain.Client", b =>
+            modelBuilder.Entity("MyBank.Clients.Domain.Client", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("TEXT");
