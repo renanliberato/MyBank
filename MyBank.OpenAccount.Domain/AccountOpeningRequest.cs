@@ -36,5 +36,10 @@ namespace MyBank.OpenAccount.Domain
         {
             this.Status = AccountOpeningRequestStatus.Decline;
         }
+
+        internal void Cancel()
+        {
+            this.Status = AccountOpeningRequestStatus.Cancelled;
+        }
     }
 }

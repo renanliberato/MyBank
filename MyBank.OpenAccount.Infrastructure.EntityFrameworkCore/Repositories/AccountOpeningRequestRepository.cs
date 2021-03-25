@@ -31,5 +31,10 @@ namespace MyBank.OpenAccount.Infrastructure.EntityFrameworkCore.Repositories
         {
             return this.context.SaveChangesAsync();
         }
+
+        public async Task Remove(RequestId id)
+        {
+            this.context.AccountOpeningRequests.Remove(await this.context.AccountOpeningRequests.FindAsync(id));
+        }
     }
 }

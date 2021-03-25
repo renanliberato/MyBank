@@ -2,6 +2,7 @@
 using MyBank.OpenAccount.Domain.Repositories;
 using MyBank.Domain.Shared.ValueObjects;
 using System.Threading.Tasks;
+using MyBank.OpenAccount.Domain.ValueObjects;
 
 namespace MyBank.OpenAccount.Domain.Services
 {
@@ -21,6 +22,14 @@ namespace MyBank.OpenAccount.Domain.Services
             await accountOpeningRequestRepository.Save();
 
             return request;
+        }
+
+        public async Task CancelAccountOpening(RequestId id) {
+            var request = await accountOpeningRequestRepository.FindById(id);
+            
+            request.Cancel();
+
+            await accountOpeningRequestRepository.Save();
         }
     }
 }

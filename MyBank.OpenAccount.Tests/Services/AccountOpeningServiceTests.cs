@@ -21,5 +21,18 @@ namespace MyBank.OpenAccount.Domain.Tests.Services
             requestRepository.Verify(obj => obj.Add(It.Is<AccountOpeningRequest>(r => r.ClientId.Id == clientId)), Times.Once);
             requestRepository.Verify(obj => obj.Save(), Times.Once);
         }
+
+        [Fact]
+        public async Task CancelAccountOpening_UpdatesItemAndSavesRepository_IfAValidRequestIdIsSent()
+        {
+            var request = new AccountOpeningRequest(new MyBank.Domain.Shared.ValueObjects.ClientId(Guid.NewGuid()));
+            var requestRepository = new Mock<IAccountOpeningRequestRepository>();
+            requestRepository.Setup(obj => obj.FindById(request.Id)).Returns(Task.FromResult(request));
+            var service = new AccountOpeningService(requestRepository.Object);
+            await service.CancelAccountOpening(request.Id);
+
+            Assert.Equal(AccountOpeningRequestStatus.Cancelled, request.Status);
+            requestRepository.Verify(obj => obj.Save(), Times.Once);
+        }
     }
 }

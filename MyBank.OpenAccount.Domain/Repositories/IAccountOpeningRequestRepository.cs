@@ -9,5 +9,6 @@ namespace MyBank.OpenAccount.Domain.Repositories
         Task<AccountOpeningRequest> FindById(RequestId requestId);
         Task Save();
         void Add(AccountOpeningRequest request);
+        Task Remove(RequestId id);
     }
 }

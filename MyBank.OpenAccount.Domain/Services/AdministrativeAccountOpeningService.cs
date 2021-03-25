@@ -23,8 +23,11 @@ namespace MyBank.OpenAccount.Domain.Services
         {
             var request = await accountOpeningRequestRepository.FindById(new RequestId(command.Id));
 
-            if (request.ClientId.Id != command.ClientId)
-                throw new Exception("Request is not from this client");
+            if (request.Status == AccountOpeningRequestStatus.Cancelled)
+                throw new Exception("Request is already cancelled");
+
+            if (request.Status == AccountOpeningRequestStatus.Decline)
+                throw new Exception("Request is already declined");
 
             request.Approve();
             
@@ -39,6 +42,12 @@ namespace MyBank.OpenAccount.Domain.Services
         public async Task<AccountOpeningRequest> DeclineAccountOpening(DeclineAccountOpeningRequest command)
         {
             var request = await accountOpeningRequestRepository.FindById(new RequestId(command.Id));
+
+            if (request.Status == AccountOpeningRequestStatus.Cancelled)
+                throw new Exception("Request is already cancelled");
+
+            if (request.Status == AccountOpeningRequestStatus.Approved)
+                throw new Exception("Request is already approved");
 
             request.Decline();
 

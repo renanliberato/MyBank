@@ -4,6 +4,7 @@
     {
         Initial = 1,
         Approved = 2,
-        Decline = 3
+        Decline = 3,
+        Cancelled = 4
     }
 }
