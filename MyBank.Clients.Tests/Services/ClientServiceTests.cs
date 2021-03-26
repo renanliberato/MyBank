@@ -38,7 +38,7 @@ namespace MyBank.Clients.Domain.Tests.Services
             var repository = new Mock<IClientRepository>();
             var eventProducer = new Mock<IEventProducer>();
             var eventProducerFactory = new Mock<IEventProducerFactory>();
-            eventProducerFactory.Setup((obj) => obj.Create("client_removed")).Returns(eventProducer.Object);
+            eventProducerFactory.Setup((obj) => obj.Create("clients_removed")).Returns(eventProducer.Object);
             var clientId = new ClientId(Guid.NewGuid());
             var service = new ClientService(repository.Object, eventProducerFactory.Object);
 
